@@ -10,7 +10,6 @@
 
 		<script>
 
-			   $('#idade').val(idade);
 
 		/*// O código abaixo calcula se a idade do visitante está entre 18 e 70 anos e, caso não esteja, bloqueia o acesso.
 		if (idade >= 18 && idade <= 70){
