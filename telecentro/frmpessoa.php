@@ -310,7 +310,27 @@
 																	</div>
 																</div> <!-- /.modal -->
 														</div>
-
+														
+														<div class="form-group col-md-2 col-md-offset-1">
+															<label>Estado</label>
+																<select class="form-control" name="UF">
+																<option>Selecione</option>
+																	
+																<?php 
+																	// Busca os dados do responsavel do banco
+																 	$query = mysql_query ("select * FROM tb_cidade");
+																 
+																 	while($res=mysql_fetch_array($query)){
+																	 
+																	 echo "<option value='{$res["CDCIDADE"]}'>{$res["UF"]}</option>";
+																	 
+																	}
+															 
+																?>
+																					
+															</select><br> 
+														</div>
+														
 														<div class="form-group col-md-2 ">
 															<label>Telefone</label>
 															<input type="text" class="form-control" name="telefone" placeholder="(xx)xxxx-xxxx">
