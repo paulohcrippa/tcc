@@ -9,42 +9,22 @@
 		
 
 		<script>
-			function calcularIdade(){
-			    if(document.getElementById("data_nascimento").value.length < 10){return;}
-			    else{// Não executa a função caso a data digitada não esteja no formato indicado
-				    var anoNascParts = document.getElementById("data_nascimento").value.split('/');
-				    var idade = <?php echo date("Y");?> - anoNascParts[2];
-				 
-				    //se mês atual for menor que o nascimento,não faz aniversario ainda.
-				    if (<?php echo date("m");?> < anoNascParts[1]){
-				        idade--;
-				    } else {
-				        //se tiver no mes do nasc,verificar o dia
-				        if (<?php echo date("m");?> <= anoNascParts[1]){
-				            if (<?php echo date("d");?> < anoNascParts[0]){
-				                //se a data atual for menor que o dia de nascimento,quer dizer que ele ainda não fez aniversario
-				                idade--;
-				            }
-				        }
-			    	}
 
-			    	 $('#idade').val(idade);
+			   $('#idade').val(idade);
 
-						/*// O código abaixo calcula se a idade do visitante está entre 18 e 70 anos e, caso não esteja, bloqueia o acesso.
-						if (idade >= 18 && idade <= 70){
-							alert("Tens "+idade+" anos, est\u00e1s dentro das regras e obter\u00e1s acesso!");
-						} else {
-							if(idade < 18){
-								var alerta = "Tens menos de 18 anos (tens "+idade+" ano[s]) e n\u00e3o obter\u00e1s acesso";
-							} else if (idade > 70){
-								var alerta = "Tens mais de 70 anos (tens "+idade+" ano[s]) e n\u00e3o obter\u00e1s acesso";
-							}
-							alert(alerta);
-						
-						} */
-				}
+		/*// O código abaixo calcula se a idade do visitante está entre 18 e 70 anos e, caso não esteja, bloqueia o acesso.
+		if (idade >= 18 && idade <= 70){
+			alert("Tens "+idade+" anos, est\u00e1s dentro das regras e obter\u00e1s acesso!");
+		} else {
+			if(idade < 18){
+				var alerta = "Tens menos de 18 anos (tens "+idade+" ano[s]) e n\u00e3o obter\u00e1s acesso";
+			} else if (idade > 70){
+				var alerta = "Tens mais de 70 anos (tens "+idade+" ano[s]) e n\u00e3o obter\u00e1s acesso";
+			}
+			alert(alerta);
+		
+		} */
 				
-			};
 
 			function _MostraCampo(bool)
 			{
@@ -99,10 +79,10 @@
 	                            <li class="">
 	                                pagina inicial
 	                            </li>
-								<li class="">
-	                                 tela de pessoas
+					<li class="">
+	                                   tela de pessoas
 	                            </li>
-								<li class="active">
+					<li class="active">
 	                                 cadastrar Pessoas
 	                            </li>
 	                        </ol>
@@ -181,7 +161,7 @@
 												  	  	
 												  	  	<div class="form-group col-md-3 col-md-offset-1 ">
 												  	  		<label>Data de Nascimento</label>
-												  	  		<input type="text" class="form-control" id="data_nascimento" oninput="calcularIdade();"  name="dtnascimento" placeholder="data de nascimento"/>
+												  	  		<input type="date" class="form-control" id="data_nascimento"   name="dtnascimento" placeholder="data de nascimento"/>
 												  	  	</div>
 								  
 													  	<div class="form-group col-md-1 ">
@@ -778,6 +758,46 @@
 	    <script src="js/plugins/morris/raphael.min.js"></script>
 	    <script src="js/plugins/morris/morris.min.js"></script>
 	    <script src="js/plugins/morris/morris-data.js"></script>	
+	    	<script>
+	    	$('#data_nascimento').on('keyup',function(){
+				
+				var data = new Date();
+
+				var dia     = data.getDate();           // 1-31
+				var dia_sem = data.getDay();            // 0-6 (zero=domingo)
+				var mes     = data.getMonth();          // 0-11 (zero=janeiro)
+				var ano2    = data.getYear();           // 2 dígitos
+				var ano4    = data.getFullYear();       // 4 dígitos
+				var hora    = data.getHours();          // 0-23
+				var min     = data.getMinutes();        // 0-59
+				var seg     = data.getSeconds();        // 0-59
+				var mseg    = data.getMilliseconds();   // 0-999
+				var tz      = data.getTimezoneOffset(); // em minutos
+
+
+
+			    if($(this).length < 10){return;}
+			    else{// Não executa a função caso a data digitada não esteja no formato indicado
+
+				    var anoNascParts = $(this).split('/');
+				    var idade = ano4 - anoNascParts[0];
+				 
+				    //se mês atual for menor que o nascimento,não faz aniversario ainda.
+				    if (mes < anoNascParts[1]){
+				        idade--;
+				    } else {
+				        //se tiver no mes do nasc,verificar o dia
+				        if (mes <= anoNascParts[1]){
+				            if (dia < anoNascParts[2]){
+				                //se a data atual for menor que o dia de nascimento,quer dizer que ele ainda não fez aniversario
+				                idade--;
+				            }
+				        }
+			    	}
+
+			    	 $('#idade').val(idade);
+			});
+	    </script>
 
 	</body>
 
