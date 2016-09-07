@@ -288,7 +288,7 @@
 																						<div class="form-group">
 																							<label class="control-label col-sm-2" for="nome">Cidade:</label> <font color="red">*</font>
 																							<div class="col-sm-4">
-																							  <input type="text" class="form-control" name="cidade" id="cidade" placeholder="Cidade" required> 
+																							  <input type="text" class="form-control" name="cidade2" id="cidade" placeholder="Cidade" required> 
 																							</div>
 																						</div>
 																						<div class="form-group">
